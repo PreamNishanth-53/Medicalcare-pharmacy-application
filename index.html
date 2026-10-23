@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MediCare Pharmacy Management</title>
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <link rel="stylesheet" href="style.css">
@@ -15,7 +15,6 @@
         <div class="logo">
     <img src="logo.png" alt="MediCare Pharmacy Logo">
 </div>
-        <div><h2>MediCare</h2><p>Pharmacy Management</p></div>
     </div>
     <p class="menu-label">MAIN MENU</p>
     <nav>
@@ -90,11 +89,11 @@ Dashboard
     </div>
 </div>
 
-    <div class="actions">
-        <button class="primary" data-go="inventory">+ Add Medicine</button>
-        <button class="secondary" data-go="purchases">+ Record Purchase</button>
-        <button class="secondary" data-go="barcode">▥ Barcode Search</button>
-    </div>
+<div class="actions">
+    <button class="primary" data-go="inventory"><span class="material-symbols-outlined">add</span> Add Medicine</button>
+    <button class="secondary" data-go="purchases"><span class="material-symbols-outlined">vaccines</span> Record Purchase</button>
+    <button class="secondary" data-go="barcode"><span class="material-symbols-outlined">barcode_scanner</span> Barcode Search</button>
+</div>
     <div class="panel">
         <div class="panel-header"><h3>Recent Sales</h3><button class="secondary" data-go="sales">View All</button></div>
         <div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Payment</th><th>Total</th></tr></thead><tbody id="recent-sales"></tbody></table></div>
@@ -167,8 +166,7 @@ Dashboard
 </section>
 <section class="page" id="barcode">
     <div class="heading"><div><h2>Barcode Search</h2><p>Scan or enter a medicine barcode.</p></div></div>
-    <div class="panel barcode-box"><div class="barcode-symbol">▥</div><h3>Find a Medicine</h3><p>Use a USB barcode scanner or type a barcode.</p><form id="barcode-form" class="barcode-form"><input id="barcode-input" placeholder="Enter barcode..." required><button class="primary">Search</button></form><div id="barcode-result"></div></div>
-</section>
+<div class="panel barcode-box"><div class="barcode-symbol"><span class="material-symbols-outlined">barcode_scanner</span></div><h3>Find a Medicine</h3><p>Use a USB barcode scanner or type a barcode.</p><form id="barcode-form" class="barcode-form"><input id="barcode-input" placeholder="Enter barcode..." required><button class="primary">Search</button></form><div id="barcode-result"></div></div></section>
 <section class="page" id="reports">
     <div class="heading"><div><h2>Reports & Analytics</h2><p>Sales and inventory summary.</p></div><button class="secondary" id="export">Export Inventory CSV</button></div>
     <div class="stats"><div class="stat"><p>Total Sales</p><h2 id="report-sales">₹0.00</h2></div><div class="stat"><p>Total Purchases</p><h2 id="report-purchases">₹0.00</h2></div><div class="stat"><p>Inventory Value</p><h2 id="report-value">₹0.00</h2></div></div>

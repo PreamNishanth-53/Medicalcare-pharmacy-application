@@ -17,8 +17,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: var(--light);
+    font-family: math;
+    background: #f3f8f8;
     color: var(--dark);
     font-size: 14px;
     cursor: url("syringe.png") 0 0, auto;
@@ -33,10 +33,10 @@ select {
 button {
     cursor: url("syringe.png") 0 0, pointer;
     border: 0;
-    border-radius: 6px;
-    padding: 11px 14px;
+    border-radius: 4px;
+    padding: 12px 14px;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 nav a,
@@ -71,9 +71,8 @@ input {
 }
 
 .logo {
-    width: 43px;
-    height: 43px;
-    background: var(--blue);
+    width: 204px;
+    height: -webkit-fill-available;
     color: var(--white);
     display: flex;
     align-items: center;
@@ -125,8 +124,8 @@ nav a {
 
 nav a:hover,
 nav a.active {
-    background: #E1F3F0;
-    color: var(--blue);
+    background: #e7eff4;
+    color: #349adc;
     font-weight: bold;
 }
 
@@ -214,12 +213,12 @@ nav a.active {
 
 .heading p {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 20px;
 }
 
 /* Buttons */
 .primary {
-    background: var(--blue);
+    background: #349adc;
     color: var(--white);
 }
 
@@ -255,7 +254,7 @@ nav a.active {
 
 .stat p {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .stat h2 {
@@ -323,7 +322,7 @@ table {
 th {
     background: #F0F6F6;
     color: var(--muted);
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
 }
 
@@ -591,4 +590,27 @@ select:focus {
     .barcode-box {
         padding: 18px;
     }
+}
+
+.barcode-symbol .material-symbols-outlined {
+    font-size: 64px;
+}
+
+.barcode-symbol .material-symbols-outlined {
+    font-size: 64px;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button .material-symbols-outlined {
+    font-size: 20px !important;
+    line-height: 1;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
 }
