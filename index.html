@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare Pharmacy Management</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+    <div class="brand">
+        <div class="logo">
+    <img src="logo.png" alt="MediCare Pharmacy Logo">
+</div>
+        <div><h2>MediCare</h2><p>Pharmacy Management</p></div>
+    </div>
+    <p class="menu-label">MAIN MENU</p>
+    <nav>
+    <a href="#dashboard" class="active" data-page="dashboard"><span class="material-symbols-outlined">
+Dashboard
+</span>Dashboard</a>
+    <a href="#inventory" data-page="inventory"><span class="material-symbols-outlined">inventory_2</span> Inventory</a>
+    <a href="#billing" data-page="billing"><span class="material-symbols-outlined">receipt_long</span> Billing / POS</a>
+    <a href="#purchases" data-page="purchases"><span class="material-symbols-outlined">vaccines</span> Purchases</a>
+    <a href="#suppliers" data-page="suppliers"><span class="material-symbols-outlined">local_shipping</span> Suppliers</a>
+    <a href="#sales" data-page="sales"><span class="material-symbols-outlined">bar_chart</span> Sales</a>
+    <a href="#barcode" data-page="barcode"><span class="material-symbols-outlined">barcode_scanner</span> Barcode Search</a>
+    <a href="#reports" data-page="reports"><span class="material-symbols-outlined">assessment</span> Reports</a>
+</nav>
+    <div class="admin"><strong>Pharmacy Admin</strong><p>Administrator</p></div>
+</aside>
+
+<main class="main">
+
+<div class="content">
+
+<section class="page active" id="dashboard">
+    <div class="heading">
+        <div><h2>Welcome back, Admin!</h2><p>Here is your pharmacy overview for today.</p></div>
+        <button class="primary" data-go="billing">+ New Sale</button>
+    </div>
+    <div class="stats">
+        <div class="stat"><p>Total Medicines</p><h2 id="total-medicines">0</h2><small>Registered products</small></div>
+        <div class="stat"><p>Available Stock</p><h2 id="total-stock">0</h2><small>Total units</small></div>
+        <div class="stat"><p>Today's Sales</p><h2 id="today-sales">₹0.00</h2><small>Completed invoices</small></div>
+        <div class="stat warning"><p>Low Stock</p><h2 id="low-count">0</h2><small>Replenishment alerts</small></div>
+        <div class="stat danger"><p>Expiry Alerts</p><h2 id="expiry-count">0</h2><small>Expired or near expiry</small></div>
+    </div>
+    <div class="actions">
+        <button class="primary" data-go="inventory">+ Add Medicine</button>
+        <button class="secondary" data-go="purchases">+ Record Purchase</button>
+        <button class="secondary" data-go="barcode">▥ Barcode Search</button>
+    </div>
+    <div class="panel">
+        <div class="panel-header"><h3>Recent Sales</h3><button class="secondary" data-go="sales">View All</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Payment</th><th>Total</th></tr></thead><tbody id="recent-sales"></tbody></table></div>
+    </div>
+    <div class="panel"><h3>Stock Alerts</h3><div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Batch</th><th>Quantity</th><th>Expiry</th><th>Status</th></tr></thead><tbody id="dashboard-alerts"></tbody></table></div></div>
+</section>
+
+<section class="page" id="inventory">
+    <div class="heading"><div><h2>Medicine Inventory</h2><p>Manage medicines, batches and expiry dates.</p></div><button class="primary" id="show-med">+ Add Medicine</button></div>
+    <form id="med-form" class="panel form-grid hidden">
+        <h3 class="full">Add New Medicine</h3>
+        <label>Medicine Name<input id="med-name" required></label>
+        <label>Barcode<input id="med-barcode" required></label>
+        <label>Category<input id="med-category" required></label>
+        <label>Batch Number<input id="med-batch" required></label>
+        <label>Quantity<input id="med-qty" type="number" min="0" required></label>
+        <label>Purchase Price (₹)<input id="med-cost" type="number" min="0" step=".01" required></label>
+        <label>MRP (₹)<input id="med-price" type="number" min=".01" step=".01" required></label>
+        <label>GST Rate (%)<input id="med-gst" type="number" min="0" max="100" value="5" required></label>
+        <label>Expiry Date<input id="med-expiry" type="date" required></label>
+        <label>Minimum Stock<input id="med-min" type="number" min="0" value="10" required></label>
+        <div class="full form-buttons"><button class="primary">Save Medicine</button><button type="button" class="secondary" id="cancel-med">Cancel</button></div>
+    </form>
+    <div class="panel">
+        <div class="toolbar"><input id="inventory-search" placeholder="Search medicine or barcode..."><select id="stock-filter"><option value="all">All Stock</option><option value="low">Low Stock</option><option value="expiry">Expiry Alerts</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Barcode</th><th>Batch</th><th>Quantity</th><th>MRP</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody id="inventory-table"></tbody></table></div>
+    </div>
+</section>
+
+<section class="page" id="billing">
+    <div class="heading"><div><h2>Billing / POS</h2><p>Create sales invoices and deduct inventory.</p></div></div>
+    <div class="panel"><label class="field-label">Search medicine or scan barcode<input id="bill-search" placeholder="Enter medicine name or barcode..."></label><div id="bill-results"></div></div>
+    <div class="panel"><h3>Current Cart</h3><div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Quantity</th><th>Price</th><th>GST</th><th>Total</th><th>Action</th></tr></thead><tbody id="cart-table"></tbody></table></div>
+        <div class="summary">
+            <p>Subtotal <strong id="subtotal">₹0.00</strong></p><p>GST <strong id="tax">₹0.00</strong></p><p class="total">Grand Total <strong id="grand-total">₹0.00</strong></p>
+            <label class="field-label">Payment Method<select id="payment"><option>Cash</option><option>UPI</option><option>Card</option></select></label>
+            <button class="primary" id="checkout">Complete Sale</button>
+        </div>
+    </div>
+</section>
+
+<section class="page" id="purchases">
+    <div class="heading"><div><h2>Purchase Management</h2><p>Receive medicine stock from suppliers.</p></div></div>
+    <form id="purchase-form" class="panel form-grid">
+        <h3 class="full">Record Purchase</h3>
+        <label>Supplier Name<input id="pur-supplier" required></label>
+        <label>Supplier Invoice Number<input id="pur-invoice" required></label>
+        <label>Medicine Name<input id="pur-name" required></label>
+        <label>Batch Number<input id="pur-batch" required></label>
+        <label>Quantity<input id="pur-qty" type="number" min="1" required></label>
+        <label>Purchase Price (₹)<input id="pur-cost" type="number" min=".01" step=".01" required></label>
+        <label>MRP (₹)<input id="pur-mrp" type="number" min=".01" step=".01" required></label>
+        <label>Expiry Date<input id="pur-expiry" type="date" required></label>
+        <div class="full"><button class="primary">Record Purchase</button></div>
+    </form>
+    <div class="panel"><h3>Purchase History</h3><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Supplier</th><th>Medicine</th><th>Batch</th><th>Qty</th><th>Total</th><th>Date</th></tr></thead><tbody id="purchase-table"></tbody></table></div></div>
+</section>
+
+<section class="page" id="suppliers">
+    <div class="heading"><div><h2>Supplier Management</h2><p>Manage supplier information.</p></div><button class="primary" id="show-supplier">+ Add Supplier</button></div>
+    <form id="supplier-form" class="panel form-grid hidden">
+        <h3 class="full">New Supplier</h3>
+        <label>Supplier Name<input id="sup-name" required></label><label>Contact Person<input id="sup-contact"></label>
+        <label>Phone<input id="sup-phone" required></label><label>Email<input id="sup-email" type="email"></label>
+        <label>GSTIN<input id="sup-gstin"></label><label>Address<input id="sup-address"></label>
+        <div class="full"><button class="primary">Save Supplier</button></div>
+    </form>
+    <div class="panel"><div class="toolbar"><input id="supplier-search" placeholder="Search suppliers..."></div><div class="table-wrap"><table><thead><tr><th>Supplier</th><th>Contact</th><th>Phone</th><th>Email</th><th>GSTIN</th></tr></thead><tbody id="supplier-table"></tbody></table></div></div>
+</section>
+
+<section class="page" id="sales">
+    <div class="heading"><div><h2>Sales History</h2><p>Review completed invoices.</p></div></div>
+    <div class="panel"><div class="toolbar"><input id="sales-search" placeholder="Search invoice..."><input id="sales-date" type="date"></div><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Payment</th><th>Subtotal</th><th>GST</th><th>Total</th></tr></thead><tbody id="sales-table"></tbody></table></div></div>
+</section>
+
+<section class="page" id="barcode">
+    <div class="heading"><div><h2>Barcode Search</h2><p>Scan or enter a medicine barcode.</p></div></div>
+    <div class="panel barcode-box"><div class="barcode-symbol">▥</div><h3>Find a Medicine</h3><p>Use a USB barcode scanner or type a barcode.</p><form id="barcode-form" class="barcode-form"><input id="barcode-input" placeholder="Enter barcode..." required><button class="primary">Search</button></form><div id="barcode-result"></div></div>
+</section>
+
+<section class="page" id="reports">
+    <div class="heading"><div><h2>Reports & Analytics</h2><p>Sales and inventory summary.</p></div><button class="secondary" id="export">Export Inventory CSV</button></div>
+    <div class="stats"><div class="stat"><p>Total Sales</p><h2 id="report-sales">₹0.00</h2></div><div class="stat"><p>Total Purchases</p><h2 id="report-purchases">₹0.00</h2></div><div class="stat"><p>Inventory Value</p><h2 id="report-value">₹0.00</h2></div></div>
+    <div class="panel"><h3>Stock and Expiry Report</h3><div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Batch</th><th>Quantity</th><th>Stock Value</th><th>Expiry</th><th>Status</th></tr></thead><tbody id="report-table"></tbody></table></div></div>
+</section>
+
+</div>
+</main>
+</div>
+<div id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
