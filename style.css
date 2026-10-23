@@ -604,7 +604,11 @@ button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     gap: 10px;
+=======
+    gap: 8px;
+>>>>>>> 48f4bb295c2d7db5e747b6c82615771fdd75788b
 }
 
 button .material-symbols-outlined {
