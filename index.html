@@ -23,7 +23,7 @@
 Dashboard
 </span>Dashboard</a>
     <a href="#inventory" data-page="inventory"><span class="material-symbols-outlined">inventory_2</span> Inventory</a>
-    <a href="#billing" data-page="billing"><span class="material-symbols-outlined">receipt_long</span> Billing / POS</a>
+    <a href="#billing" data-page="billing"><span class="material-symbols-outlined">receipt_long</span> Billing </a>
     <a href="#purchases" data-page="purchases"><span class="material-symbols-outlined">vaccines</span> Purchases</a>
     <a href="#suppliers" data-page="suppliers"><span class="material-symbols-outlined">local_shipping</span> Suppliers</a>
     <a href="#sales" data-page="sales"><span class="material-symbols-outlined">bar_chart</span> Sales</a>
@@ -39,7 +39,7 @@ Dashboard
 
 <section class="page active" id="dashboard">
     <div class="heading">
-        <div><h2>Welcome back, Admin!</h2><p>Here is your pharmacy overview for today.</p></div>
+        <div><h2>Welcome back, Mohanraj!</h2><p>Here is your pharmacy overview for today.</p></div>
         <button class="primary" data-go="billing">+ New Sale</button>
     </div>
     
@@ -123,7 +123,6 @@ Dashboard
         <div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Barcode</th><th>Batch</th><th>Quantity</th><th>MRP</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody id="inventory-table"></tbody></table></div>
     </div>
 </section>
-
 <section class="page" id="billing">
     <div class="heading"><div><h2>Billing / POS</h2><p>Create sales invoices and deduct inventory.</p></div></div>
     <div class="panel"><label class="field-label">Search medicine or scan barcode<input id="bill-search" placeholder="Enter medicine name or barcode..."></label><div id="bill-results"></div></div>
@@ -135,7 +134,6 @@ Dashboard
         </div>
     </div>
 </section>
-
 <section class="page" id="purchases">
     <div class="heading"><div><h2>Purchase Management</h2><p>Receive medicine stock from suppliers.</p></div></div>
     <form id="purchase-form" class="panel form-grid">
@@ -152,7 +150,6 @@ Dashboard
     </form>
     <div class="panel"><h3>Purchase History</h3><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Supplier</th><th>Medicine</th><th>Batch</th><th>Qty</th><th>Total</th><th>Date</th></tr></thead><tbody id="purchase-table"></tbody></table></div></div>
 </section>
-
 <section class="page" id="suppliers">
     <div class="heading"><div><h2>Supplier Management</h2><p>Manage supplier information.</p></div><button class="primary" id="show-supplier">+ Add Supplier</button></div>
     <form id="supplier-form" class="panel form-grid hidden">
@@ -164,28 +161,23 @@ Dashboard
     </form>
     <div class="panel"><div class="toolbar"><input id="supplier-search" placeholder="Search suppliers..."></div><div class="table-wrap"><table><thead><tr><th>Supplier</th><th>Contact</th><th>Phone</th><th>Email</th><th>GSTIN</th></tr></thead><tbody id="supplier-table"></tbody></table></div></div>
 </section>
-
 <section class="page" id="sales">
     <div class="heading"><div><h2>Sales History</h2><p>Review completed invoices.</p></div></div>
     <div class="panel"><div class="toolbar"><input id="sales-search" placeholder="Search invoice..."><input id="sales-date" type="date"></div><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Payment</th><th>Subtotal</th><th>GST</th><th>Total</th></tr></thead><tbody id="sales-table"></tbody></table></div></div>
 </section>
-
 <section class="page" id="barcode">
     <div class="heading"><div><h2>Barcode Search</h2><p>Scan or enter a medicine barcode.</p></div></div>
     <div class="panel barcode-box"><div class="barcode-symbol">▥</div><h3>Find a Medicine</h3><p>Use a USB barcode scanner or type a barcode.</p><form id="barcode-form" class="barcode-form"><input id="barcode-input" placeholder="Enter barcode..." required><button class="primary">Search</button></form><div id="barcode-result"></div></div>
 </section>
-
 <section class="page" id="reports">
     <div class="heading"><div><h2>Reports & Analytics</h2><p>Sales and inventory summary.</p></div><button class="secondary" id="export">Export Inventory CSV</button></div>
     <div class="stats"><div class="stat"><p>Total Sales</p><h2 id="report-sales">₹0.00</h2></div><div class="stat"><p>Total Purchases</p><h2 id="report-purchases">₹0.00</h2></div><div class="stat"><p>Inventory Value</p><h2 id="report-value">₹0.00</h2></div></div>
     <div class="panel"><h3>Stock and Expiry Report</h3><div class="table-wrap"><table><thead><tr><th>Medicine</th><th>Batch</th><th>Quantity</th><th>Stock Value</th><th>Expiry</th><th>Status</th></tr></thead><tbody id="report-table"></tbody></table></div></div>
 </section>
-
 </div>
 </main>
 </div>
 <div id="toast" role="status"></div>
-
 <script src="script.js"></script>
 </body>
 </html>
